@@ -1,7 +1,12 @@
 #root {
-  max-width: 1280px;
+  width: 100%;
+  min-height: 100vh;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  background-color: rgb(223, 221, 221);
 }
 
+.page {
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+}

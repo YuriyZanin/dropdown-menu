@@ -1,0 +1,47 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 4px;
+  border: none;
+  border-radius: 4px;
+  background: rgb(156, 155, 155);
+}
+
+.menu {
+  position: absolute;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 1000;
+  width: 260px;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.menu.open {
+  overflow: auto;
+  visibility: visible;
+}
+
+.menu.top {
+  bottom: 100%;
+}
+
+.menu.bottom {
+  top: 100%;
+}
+
+.menu.left {
+  right: 0;
+}
+
+.menu.right {
+  left: 0;
+}
