@@ -1,11 +1,18 @@
 #root {
   width: 100%;
-  min-height: 100vh;
+  min-height: 1080px;
   margin: 0 auto;
   background-color: rgb(223, 221, 221);
 }
 
-.page {
+.main {
+  height: 1080px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.container {
   display: flex;
   padding: 20px;
   justify-content: space-between;

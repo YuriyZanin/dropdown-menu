@@ -1,6 +1,6 @@
 import './App.css';
 import { DropdownMenu } from './components/dropdown-menu/dropdown-menu';
-import type { DropdownItem } from './components/dropdown-menu/types';
+import type { DropdownItem } from './types/dropdown';
 import { shareIcon, editIcon, triggerIcon, deleteIcon } from './assets/index';
 
 function App() {
@@ -26,11 +26,18 @@ function App() {
 
   return (
     <>
-      <div className="page">
-        <DropdownMenu trigger={button} items={menuItems} />
-        <DropdownMenu trigger={button} items={menuItems} />
-        <DropdownMenu trigger={button} items={menuItems} />
-      </div>
+      <main className="main">
+        <div className="container">
+          <DropdownMenu trigger={button} items={menuItems} />
+          <DropdownMenu trigger={button} items={menuItems} />
+          <DropdownMenu trigger={button} items={menuItems} />
+        </div>
+        <div className="container">
+          <DropdownMenu trigger={button} items={menuItems} />
+          <DropdownMenu trigger={button} items={menuItems} />
+          <DropdownMenu trigger={button} items={menuItems} />
+        </div>
+      </main>
     </>
   );
 }
