@@ -45,3 +45,8 @@
 .menu.right {
   left: 0;
 }
+
+.menu.hidden {
+  visibility: hidden;
+  overflow: hidden;
+}

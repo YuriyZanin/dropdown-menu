@@ -6,4 +6,4 @@ export interface DropdownItem {
   onClick?: () => void;
 }
 
-export type Position = 'top' | 'bottom' | 'left' | 'right';
+export type Position = 'top' | 'bottom' | 'left' | 'right' | 'hidden';

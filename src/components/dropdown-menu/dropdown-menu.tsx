@@ -14,7 +14,6 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [position, setPosition] = useState<Position[]>([]);
-  const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(true);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -50,7 +49,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
       const canOpenLeft = spaceLeft >= menuRect.width;
       const canOpenRight = spaceRight >= menuRect.width;
 
-      const classes: Position[] = [];
+      let classes: Position[] = [];
 
       if (canOpenBottom) {
         classes.push('bottom');
@@ -58,16 +57,20 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
         classes.push('top');
       }
 
-      if (!canOpenBottom && !canOpenTop) {
-        setIsDropdownVisible(false);
-      } else {
-        setIsDropdownVisible(true);
-      }
-
       if (canOpenRight) {
         classes.push('right');
       } else if (canOpenLeft) {
         classes.push('left');
+      }
+
+      const isOutOfView =
+        (menuRect.top < 0 && classes.includes('bottom')) ||
+        (menuRect.bottom > window.innerHeight && classes.includes('top'));
+
+      if (isOutOfView) {
+        classes.push('hidden');
+      } else {
+        classes = classes.filter(item => item !== 'hidden');
       }
 
       setPosition(classes);
@@ -105,21 +108,19 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
         {trigger}
       </div>
 
-      {isDropdownVisible && (
-        <div
-          className={`menu ${position.join(' ')} ${isOpen ? 'open' : ''}`}
-          ref={menuRef}
-        >
-          {items.map((item, index) => (
-            <MenuItem
-              key={index}
-              text={item.label}
-              icon={item.icon}
-              onClick={() => handleClickMenuItem(item)}
-            />
-          ))}
-        </div>
-      )}
+      <div
+        className={`menu ${position.join(' ')} ${isOpen ? 'open' : ''}`}
+        ref={menuRef}
+      >
+        {items.map((item, index) => (
+          <MenuItem
+            key={index}
+            text={item.label}
+            icon={item.icon}
+            onClick={() => handleClickMenuItem(item)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
