@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import type { DropdownItem, Position } from './types';
+import { Position, type DropdownItem } from './types';
 import { MenuItem } from '../../elements/menu-item/menu-item';
 import './dropdown-menu.css';
 
@@ -52,25 +52,26 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
       let classes: Position[] = [];
 
       if (canOpenBottom) {
-        classes.push('bottom');
+        classes.push(Position.Bottom);
       } else if (canOpenTop) {
-        classes.push('top');
+        classes.push(Position.Top);
       }
 
       if (canOpenRight) {
-        classes.push('right');
+        classes.push(Position.Right);
       } else if (canOpenLeft) {
-        classes.push('left');
+        classes.push(Position.Left);
       }
 
       const isOutOfView =
-        (menuRect.top < 0 && classes.includes('bottom')) ||
-        (menuRect.bottom > window.innerHeight && classes.includes('top'));
+        (menuRect.top < 0 && classes.includes(Position.Bottom)) ||
+        (menuRect.bottom > window.innerHeight &&
+          classes.includes(Position.Top));
 
       if (isOutOfView) {
-        classes.push('hidden');
+        classes.push(Position.Hidden);
       } else {
-        classes = classes.filter(item => item !== 'hidden');
+        classes = classes.filter(item => item !== Position.Hidden);
       }
 
       setPosition(classes);
